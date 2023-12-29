@@ -89,7 +89,7 @@ function App() {
     <div className="game">
       {!gameMode && (
         <div className="gamectl">
-          <p>
+          <div>
             <p>How many rounds: {numRounds}</p>
             <input
               type="range"
@@ -98,7 +98,7 @@ function App() {
               value={numRounds}
               onChange={(e) => setNumRounds(e.target.value)}
             />
-          </p>
+          </div>
 
           <button onClick={() => setGameMode("0")}>Single player</button>
           <button onClick={() => setGameMode("1")}>With friend</button>

@@ -1,13 +1,9 @@
 import { useState, useEffect } from "react";
 import "./App.scss";
-
-const Button = ({ disabled, onClick, children, ...rest }) => {
-  return (
-    <button disabled={disabled} onClick={onClick} {...rest}>
-      {children}
-    </button>
-  );
-};
+import Button from "./components/Button";
+import Points from "./components/Points";
+import Stats from "./components/Stats";
+import Player from "./components/Player";
 
 const Game = ({ gameMode, numRounds }) => {
   const [playerA, setPlayerA] = useState(null);
@@ -48,64 +44,18 @@ const Game = ({ gameMode, numRounds }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerA, playerB]);
 
-  /*
-
-C + C = 3 / 3 points
-D + C = 5 / 0 points
-C + D = 0 / 5 points
-D + D = 1 / 1 points
-
-*/
-
   return (
     <div>
-      <div className="points">
-        <p>Player A: {points.A}</p>
-        <p>Player B: {points.B}</p>
-      </div>
-
-      <div className="stats">
-        {games.map((game, key) => (
-          <div key={key}>
-            <p style={{ color: game.A == "1" ? "green" : "red" }}>{game.A}</p>
-            <p style={{ color: game.B == "1" ? "green" : "red" }}>{game.B}</p>
-          </div>
-        ))}
-      </div>
+      <Points points={points} />
+      <Stats games={games} />
 
       {!over ? (
         <>
           <div className="controls">
-            <div className="player">
-              <p>Player A</p>
-
-              {["1", "0"].map((d, key) => (
-                <Button
-                  key={key}
-                  id={d}
-                  disabled={playerA}
-                  onClick={() => setPlayerA(d)}
-                >
-                  {d === "1" ? "C" : "D"}
-                </Button>
-              ))}
-            </div>
+            <Player id="A" player={playerA} setPlayer={setPlayerA} />
 
             {gameMode === "1" && (
-              <div className="player">
-                <p>Player B</p>
-
-                {["1", "0"].map((d, key) => (
-                  <Button
-                    key={key}
-                    id={d}
-                    disabled={playerB}
-                    onClick={() => setPlayerB(d)}
-                  >
-                    {d === "1" ? "C" : "D"}
-                  </Button>
-                ))}
-              </div>
+              <Player id="B" player={playerB} setPlayer={setPlayerB} />
             )}
           </div>
         </>
@@ -116,9 +66,16 @@ D + D = 1 / 1 points
   );
 };
 
-function GameComp() {
+function App() {
   const [gameMode, setGameMode] = useState(false);
   const [numRounds, setNumRounds] = useState(10);
+
+  /*
+    C + C = 3 / 3 points
+    D + C = 5 / 0 points
+    C + D = 0 / 5 points
+    D + D = 1 / 1 points
+  */
 
   return (
     <div className="game">
@@ -145,4 +102,4 @@ function GameComp() {
   );
 }
 
-export default GameComp;
+export default App;

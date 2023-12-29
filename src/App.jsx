@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import "./App.scss";
-import Button from "./components/Button";
 import Points from "./components/Points";
 import Stats from "./components/Stats";
 import Player from "./components/Player";
@@ -60,7 +59,16 @@ const Game = ({ gameMode, numRounds }) => {
           </div>
         </>
       ) : (
-        <button onClick={reset}>Again</button>
+        <div>
+          <h2>
+            {points.A > points.B
+              ? "Player A won!"
+              : points.A < points.B
+              ? "Player B won!"
+              : "Draw"}
+          </h2>
+          <button onClick={reset}>Again</button>
+        </div>
       )}
     </div>
   );

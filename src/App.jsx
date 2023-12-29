@@ -9,7 +9,7 @@ const Button = ({ disabled, onClick, children, ...rest }) => {
   );
 };
 
-const Game = ({ gameMode }) => {
+const Game = ({ gameMode, numRounds }) => {
   const [playerA, setPlayerA] = useState(null);
   const [playerB, setPlayerB] = useState(null);
   const [games, setGames] = useState([]);
@@ -42,7 +42,7 @@ const Game = ({ gameMode }) => {
       setPlayerA(null);
       setPlayerB(null);
 
-      if (games.length >= 9) return setOver(true);
+      if (games.length >= numRounds - 1) return setOver(true);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -118,13 +118,29 @@ D + D = 1 / 1 points
 
 function GameComp() {
   const [gameMode, setGameMode] = useState(false);
+  const [numRounds, setNumRounds] = useState(10);
 
   return (
-    <div>
-      <button onClick={() => setGameMode("0")}>Single player</button>
-      <button onClick={() => setGameMode("1")}>With friend</button>
+    <div className="game">
+      {!gameMode && (
+        <div>
+          <p>
+            How many rounds: {numRounds}
+            <input
+              type="range"
+              min="10"
+              max="200"
+              value={numRounds}
+              onChange={(e) => setNumRounds(e.target.value)}
+            />
+          </p>
 
-      {gameMode && <Game gameMode={gameMode} />}
+          <button onClick={() => setGameMode("0")}>Single player</button>
+          <button onClick={() => setGameMode("1")}>With friend</button>
+        </div>
+      )}
+
+      {gameMode && <Game gameMode={gameMode} numRounds={numRounds} />}
     </div>
   );
 }

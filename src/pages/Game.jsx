@@ -7,6 +7,8 @@ import End from "../components/End";
 import { algo } from "../utils/algo";
 import { useApp } from "../context/AppContext";
 import "../App.scss";
+import Algo from "../components/Algo";
+import OnlineForm from "../components/OnlineForm";
 
 const GameComp = ({ gameMode, numRounds }) => {
   const {
@@ -20,6 +22,7 @@ const GameComp = ({ gameMode, numRounds }) => {
     setPoints,
     over,
     setOver,
+    playerID,
   } = useApp();
 
   useEffect(() => {
@@ -40,6 +43,7 @@ const GameComp = ({ gameMode, numRounds }) => {
 
   return (
     <div>
+      {gameMode === "2" && <Algo gameMode={gameMode} numRounds={numRounds} />}
       <div>
         <Points points={points} />
         <Stats games={games} />
@@ -47,7 +51,15 @@ const GameComp = ({ gameMode, numRounds }) => {
 
       {!over ? (
         <div className="controls">
-          <Player id="A" player={playerA} setPlayer={setPlayerA} />
+          {gameMode === "2" ? (
+            <Player
+              id={playerID}
+              gameMode={gameMode}
+              player={playerID === "A" ? playerA : playerB}
+            />
+          ) : (
+            <Player id="A" player={playerA} setPlayer={setPlayerA} />
+          )}
 
           {gameMode === "1" && (
             <Player id="B" player={playerB} setPlayer={setPlayerB} />
@@ -63,6 +75,7 @@ const GameComp = ({ gameMode, numRounds }) => {
 function Game() {
   const [gameMode, setGameMode] = useState(false);
   const [numRounds, setNumRounds] = useState(10);
+  const [showOnline, setShowOnline] = useState(false);
 
   return (
     <div className="game">
@@ -81,6 +94,8 @@ function Game() {
 
           <button onClick={() => setGameMode("0")}>Single player</button>
           <button onClick={() => setGameMode("1")}>Local game</button>
+          <button onClick={() => setShowOnline((prev) => !prev)}>Online</button>
+          {showOnline && <OnlineForm setGameMode={setGameMode} />}
         </div>
       )}
 

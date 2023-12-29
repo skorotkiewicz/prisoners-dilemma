@@ -1,5 +1,4 @@
-import { useContext, createContext, useState } from "react";
-// import { nanoid } from "nanoid";
+import { useContext, createContext, useState, useRef } from "react";
 
 const AppContext = createContext();
 
@@ -9,8 +8,9 @@ const AppProvider = ({ children }) => {
   const [games, setGames] = useState([]);
   const [points, setPoints] = useState({ A: 0, B: 0 });
   const [over, setOver] = useState(false);
-  //   const [session, setSession] = useState(nanoid(10));
-  //   const mq = useRef(null);
+  const [session, setSession] = useState("");
+  const [playerID, setPlayerID] = useState("");
+  const mq = useRef(null);
 
   const reset = () => {
     setGames([]);
@@ -31,6 +31,11 @@ const AppProvider = ({ children }) => {
         setPoints,
         over,
         setOver,
+        session,
+        setSession,
+        playerID,
+        setPlayerID,
+        mq,
         reset,
       }}
     >

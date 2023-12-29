@@ -45,19 +45,19 @@ const Game = ({ gameMode, numRounds }) => {
 
   return (
     <div>
-      <Points points={points} />
-      <Stats games={games} />
+      <div>
+        <Points points={points} />
+        <Stats games={games} />
+      </div>
 
       {!over ? (
-        <>
-          <div className="controls">
-            <Player id="A" player={playerA} setPlayer={setPlayerA} />
+        <div className="controls">
+          <Player id="A" player={playerA} setPlayer={setPlayerA} />
 
-            {gameMode === "1" && (
-              <Player id="B" player={playerB} setPlayer={setPlayerB} />
-            )}
-          </div>
-        </>
+          {gameMode === "1" && (
+            <Player id="B" player={playerB} setPlayer={setPlayerB} />
+          )}
+        </div>
       ) : (
         <div>
           <h2>
@@ -88,9 +88,9 @@ function App() {
   return (
     <div className="game">
       {!gameMode && (
-        <div>
+        <div className="gamectl">
           <p>
-            How many rounds: {numRounds}
+            <p>How many rounds: {numRounds}</p>
             <input
               type="range"
               min="10"

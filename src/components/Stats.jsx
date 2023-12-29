@@ -1,4 +1,11 @@
+import { useRef, useEffect } from "react";
+
 const Stats = ({ games }) => {
+  const ref = useRef();
+  const scroll = () => ref.current.scrollIntoView({ behavior: "instant" });
+
+  useEffect(scroll, [games]);
+
   return (
     <div className="stats">
       {games.map((game, key) => (
@@ -7,6 +14,7 @@ const Stats = ({ games }) => {
           <p style={{ color: game.B == "1" ? "green" : "red" }}>{game.B}</p>
         </div>
       ))}
+      <span ref={ref}></span>
     </div>
   );
 };

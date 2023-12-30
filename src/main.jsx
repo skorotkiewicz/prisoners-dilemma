@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppProvider from "./context/AppContext.jsx";
 import App from "./App.jsx";
 import Game from "./pages/Game.jsx";
-import "./index.scss";
+import "./styles/index.scss";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

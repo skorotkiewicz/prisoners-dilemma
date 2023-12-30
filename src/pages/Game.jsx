@@ -6,9 +6,10 @@ import Player from "../components/Player";
 import End from "../components/End";
 import { algo } from "../utils/algo";
 import { useApp } from "../context/AppContext";
-import "../App.scss";
+import "../styles/App.scss";
 import Algo from "../components/Algo";
 import OnlineForm from "../components/OnlineForm";
+import Shoutbox from "../components/Shoutbox";
 
 const GameComp = ({ gameMode, numRounds }) => {
   const {
@@ -68,6 +69,8 @@ const GameComp = ({ gameMode, numRounds }) => {
       ) : (
         <End />
       )}
+
+      {gameMode === "2" && <Shoutbox name={playerID} />}
     </div>
   );
 };

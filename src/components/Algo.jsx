@@ -4,7 +4,7 @@ import { useApp } from "../context/AppContext";
 import mqtt from "mqtt";
 
 const Algo = ({ gameMode }) => {
-  const { mq, session, setPlayerA, setPlayerB } = useApp();
+  const { mq, session, setPlayerA, setPlayerB, setChat } = useApp();
 
   useEffect(() => {
     if (gameMode !== "2") return;
@@ -14,11 +14,16 @@ const Algo = ({ gameMode }) => {
     mq.current.on("connect", () => {
       mq.current.subscribe(`/!/dilemma/${session}/A/`);
       mq.current.subscribe(`/!/dilemma/${session}/B/`);
+      mq.current.subscribe(`/!/dilemma/${session}/chat/`);
     });
 
     mq.current.on("message", (topic, message) => {
       const msg = message.toString();
       const currentPlayer = topic.endsWith("A/") ? "A" : "B";
+
+      if (topic == `/!/dilemma/${session}/chat/`) {
+        return setChat((prev) => [...prev, JSON.parse(message)]);
+      }
 
       switch (currentPlayer) {
         case "A":

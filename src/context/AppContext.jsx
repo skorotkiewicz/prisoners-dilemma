@@ -10,6 +10,7 @@ const AppProvider = ({ children }) => {
   const [over, setOver] = useState(false);
   const [session, setSession] = useState("");
   const [playerID, setPlayerID] = useState("");
+  const [chat, setChat] = useState([]);
   const mq = useRef(null);
 
   const reset = () => {
@@ -35,6 +36,8 @@ const AppProvider = ({ children }) => {
         setSession,
         playerID,
         setPlayerID,
+        chat,
+        setChat,
         mq,
         reset,
       }}

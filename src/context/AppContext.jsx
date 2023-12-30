@@ -17,6 +17,7 @@ const AppProvider = ({ children }) => {
     setGames([]);
     setPoints({ A: 0, B: 0 });
     setOver(false);
+    setChat([]);
   };
 
   return (

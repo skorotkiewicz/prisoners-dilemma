@@ -79,6 +79,9 @@ function Game() {
   const [gameMode, setGameMode] = useState(false);
   const [numRounds, setNumRounds] = useState(10);
   const [showOnline, setShowOnline] = useState(false);
+  const { reset } = useApp();
+
+  useEffect(() => reset, []);
 
   return (
     <div className="game">

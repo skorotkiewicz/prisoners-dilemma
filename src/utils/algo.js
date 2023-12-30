@@ -16,3 +16,11 @@ export const algo = (playerA, playerB, points, setPoints) => {
     setPoints({ A: points.A + 1, B: points.B + 1 });
   }
 };
+
+export const current = (pathname) => {
+  if (location.pathname === pathname) {
+    return "current";
+  } else {
+    return null;
+  }
+};

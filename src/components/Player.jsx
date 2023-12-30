@@ -5,7 +5,12 @@ const Player = ({ id, player, setPlayer, gameMode }) => {
   const { mq, session } = useApp();
 
   return (
-    <div className="player">
+    <div
+      className="player"
+      style={{
+        opacity: player ? "50%" : "100%",
+      }}
+    >
       <p>Player {id}</p>
 
       {["1", "0"].map((d, key) => (

@@ -4,7 +4,7 @@ import Points from "../components/Points";
 import Stats from "../components/Stats";
 import Player from "../components/Player";
 import End from "../components/End";
-import { algo } from "../utils/algo";
+import { algo, chooseRandomStrategie, strategies } from "../utils/algo";
 import { useApp } from "../context/AppContext";
 import "../styles/App.scss";
 import Algo from "../components/Algo";
@@ -28,7 +28,7 @@ const GameComp = ({ gameMode, numRounds }) => {
 
   useEffect(() => {
     if ((playerA && playerB) || (playerA && gameMode === "0")) {
-      const rand = Math.random() < 0.5 ? "0" : "1";
+      const rand = strategies(games, chooseRandomStrategie());
       const _playerB = gameMode === "0" ? rand : playerB;
 
       setGames((prev) => [...prev, { A: playerA, B: _playerB }]);

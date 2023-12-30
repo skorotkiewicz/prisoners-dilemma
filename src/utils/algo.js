@@ -24,3 +24,29 @@ export const current = (pathname) => {
     return null;
   }
 };
+
+export const strategies = (history, key) => {
+  if (key === 1) {
+    // titForTat
+    if (history.length === 0) return "1";
+    const lastOpponentDecision = history[history.length - 1].A;
+    return lastOpponentDecision.toString();
+  }
+
+  if (key === 2) {
+    // random choice
+    return Math.random() < 0.5 ? "0" : "1";
+  }
+
+  if (key === 3) {
+    // grudger
+    if (history.some((round) => round.A === "0")) return "0";
+    return "1";
+  }
+};
+
+export const chooseRandomStrategie = () => {
+  const options = [1, 2, 3];
+  const randomIndex = Math.floor(Math.random() * options.length);
+  return options[randomIndex];
+};

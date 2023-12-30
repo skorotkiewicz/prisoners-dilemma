@@ -1,11 +1,13 @@
 import { useApp } from "../context/AppContext";
-import { nanoid } from "nanoid";
+import { customAlphabet } from "nanoid";
 
 const OnlineForm = ({ numRounds, setGameMode, setNumRounds }) => {
   const { setSession, setPlayerID } = useApp();
 
   const createGame = () => {
-    const id = `${nanoid(5)}ID${numRounds}`;
+    const nanoid = customAlphabet("1234567890abcdef", 5);
+
+    const id = `${nanoid()}ID${numRounds}`;
     alert(`Session ID: ${id}`);
     setSession(id);
     setGameMode("2");

@@ -1,11 +1,11 @@
 import { useApp } from "../context/AppContext";
 import { nanoid } from "nanoid";
 
-const OnlineForm = ({ setGameMode }) => {
+const OnlineForm = ({ numRounds, setGameMode, setNumRounds }) => {
   const { setSession, setPlayerID } = useApp();
 
   const createGame = () => {
-    const id = nanoid(10);
+    const id = `${nanoid(5)}ID${numRounds}`;
     alert(`Session ID: ${id}`);
     setSession(id);
     setGameMode("2");
@@ -15,6 +15,11 @@ const OnlineForm = ({ setGameMode }) => {
   const joinGame = () => {
     const inputSession = prompt("Enter the Session ID to join the game:");
     if (inputSession) {
+      const match = inputSession.match(/ID(\d+)/);
+      if (match && match[1]) {
+        setNumRounds(parseInt(match[1], 10));
+      }
+
       setSession(inputSession);
       setGameMode("2");
       setPlayerID("B");

@@ -95,7 +95,13 @@ function Game() {
           <button onClick={() => setGameMode("0")}>Single player</button>
           <button onClick={() => setGameMode("1")}>Local game</button>
           <button onClick={() => setShowOnline((prev) => !prev)}>Online</button>
-          {showOnline && <OnlineForm setGameMode={setGameMode} />}
+          {showOnline && (
+            <OnlineForm
+              numRounds={numRounds}
+              setGameMode={setGameMode}
+              setNumRounds={setNumRounds}
+            />
+          )}
         </div>
       )}
 

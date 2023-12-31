@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "preact/hooks";
 import { useApp } from "../context/AppContext";
 import mqtt from "mqtt";

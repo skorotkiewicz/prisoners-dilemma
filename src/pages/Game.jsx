@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "preact/hooks";
 import Points from "../components/Points";
 import Stats from "../components/Stats";

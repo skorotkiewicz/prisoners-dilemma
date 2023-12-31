@@ -9,7 +9,11 @@ const About = () => {
         complexities of human decision-making and cooperation. This fascinating
         concept has inspired many, including the renowned YouTube channel
         Veritasium, as showcased in their insightful video:{" "}
-        <a href="https://www.youtube.com/watch?v=mScpHTIi-kM">
+        <a
+          href="https://www.youtube.com/watch?v=mScpHTIi-kM"
+          target="_blank"
+          rel="noreferrer"
+        >
           The Prisoner&apos;s Dilemma
         </a>
         .

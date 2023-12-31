@@ -1,25 +1,21 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { render } from "preact";
+import { Route, Switch } from "wouter";
 import AppProvider from "./context/AppContext.jsx";
-import Game from "./pages/Game.jsx";
 import Layout from "./components/Layout.jsx";
-import App from "./App.jsx";
-import "./styles/index.scss";
+import Game from "./pages/Game.jsx";
 import About from "./pages/About.jsx";
+import App from "./app.jsx";
+import "./styles/index.scss";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <AppProvider>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route element={<Layout />}>
-            <Route path="/game" element={<Game />} />
-            <Route path="/about" element={<About />} />
-          </Route>
-        </Routes>
-      </AppProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+render(
+  <AppProvider>
+    <Switch>
+      <Route path="/" component={App} />
+      <Layout>
+        <Route path="/game" component={Game} />
+        <Route path="/about" component={About} />
+      </Layout>
+    </Switch>
+  </AppProvider>,
+  document.getElementById("app")
 );

@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect } from "preact/hooks";
 
 const Stats = ({ games }) => {
   const ref = useRef();

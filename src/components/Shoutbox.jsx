@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "preact/hooks";
 import { useApp } from "../context/AppContext";
 import "../styles/Shoutbox.scss";
 
@@ -35,7 +34,6 @@ const Shoutbox = ({ name }) => {
       const hour = (date.getHours() < 10 ? "0" : "") + date.getHours();
       const minute = (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
       return `${hour}:${minute}`;
-      // eslint-disable-next-line no-empty
     } catch (_) {}
   };
 

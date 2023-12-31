@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
+import { useEffect } from "preact/hooks";
 import { useApp } from "../context/AppContext";
 import mqtt from "mqtt";
 
@@ -9,7 +8,6 @@ const Algo = ({ gameMode }) => {
   useEffect(() => {
     if (gameMode !== "2") return;
 
-    // mq.current = mqtt.connect("ws://localhost:8888");
     mq.current = mqtt.connect("wss://test.mosquitto.org:8081");
 
     mq.current.on("connect", () => {

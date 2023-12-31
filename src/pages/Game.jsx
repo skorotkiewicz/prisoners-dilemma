@@ -1,15 +1,14 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "preact/hooks";
 import Points from "../components/Points";
 import Stats from "../components/Stats";
 import Player from "../components/Player";
 import End from "../components/End";
-import { algo, chooseRandomStrategie, strategies } from "../utils/algo";
-import { useApp } from "../context/AppContext";
-import "../styles/App.scss";
 import Algo from "../components/Algo";
 import OnlineForm from "../components/OnlineForm";
 import Shoutbox from "../components/Shoutbox";
+import { algo, chooseRandomStrategie, strategies } from "../utils/algo";
+import { useApp } from "../context/AppContext";
+import "../styles/App.scss";
 
 const GameComp = ({ gameMode, numRounds }) => {
   const {
@@ -32,7 +31,6 @@ const GameComp = ({ gameMode, numRounds }) => {
       const _playerB = gameMode === "0" ? rand : playerB;
 
       setGames((prev) => [...prev, { A: playerA, B: _playerB }]);
-
       algo(playerA, _playerB, points, setPoints);
 
       setPlayerA(null);

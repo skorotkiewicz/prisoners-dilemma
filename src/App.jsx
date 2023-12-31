@@ -1,7 +1,7 @@
-import { Navigate } from "react-router-dom";
+import { Redirect } from "wouter";
 
 function App() {
-  return <Navigate to="/game" />;
+  return <Redirect to="/game" />;
 }
 
 export default App;

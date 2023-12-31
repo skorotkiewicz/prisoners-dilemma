@@ -21,12 +21,12 @@ const Layout = ({ children }) => {
       </nav>
       <main>{children}</main>
       <footer>
-        <Link
+        <a
+          href="https://github.com/skorotkiewicz/prisoners-dilemma/"
           target="_blank"
-          href={"https://github.com/skorotkiewicz/prisoners-dilemma/"}
         >
           source
-        </Link>
+        </a>
       </footer>
     </div>
   );

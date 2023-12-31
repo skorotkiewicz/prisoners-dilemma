@@ -1,10 +1,10 @@
 import { render } from "preact";
 import { Route, Switch } from "wouter";
-import AppProvider from "./context/AppContext.jsx";
-import Layout from "./components/Layout.jsx";
-import Game from "./pages/Game.jsx";
-import About from "./pages/About.jsx";
-import App from "./app.jsx";
+import AppProvider from "./context/AppContext";
+import Layout from "./components/Layout";
+import Game from "./pages/Game";
+import About from "./pages/About";
+import App from "./app";
 import "./styles/index.scss";
 
 render(
